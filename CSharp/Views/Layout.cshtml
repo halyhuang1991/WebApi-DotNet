@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+@*Razor布局页*@
+<html>
+<head>
+    @*HTTP的头部协议，提示浏览器网页使用的字符集（GB2312:简体中文|BIG5:繁体中文|iso-2022-jp:日文|ks_c_5601:韩文|ISO-8859-1:英文|UTF-8:世界通用语言编码）*@
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    @*设定网页的到期时间。一旦网页过期，必须到服务器上重新传输。必须使用GMT的时间格式。*@
+    <meta http-equiv="expires" content="Fri,12 Jan 2001 18:18:18 GMT">
+
+    @*禁止浏览器从本地计算机的缓存中访问页面内容，访问者将无法脱机浏览。*@
+    <meta http-equiv="Pragma" content="no-cache">
+    @*如果网页过期，那么存盘的cookie将被删除。必须使用GMT的时间格式。*@
+    <meta http-equiv="Set-Cookie" content="cookievalue=xxx;expires=Friday,12-Jan-2001 18:18:18 GMT；path=/">
+
+    @*强制页面在当前窗口以独立页面显示，防止别人在框架里调用自己的页面。*@
+    <meta http-equiv="Window-target" content="_top">
+
+    @*设定页面显示语言*@
+    <meta http-equiv="Content-Language" content="zh-cn" />
+
+    @*W3C网页规范，指明页面中脚本的类型。*@
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+
+    @*指定是否显示图片工具栏*@
+    <meta http-equiv="imagetoolbar" content="false" />
+
+    @*移动设备显示参数（width：可视宽度，height：可是高度，user-scalable：是否允许缩放，intial-scale：初始缩放级别，maximum-scale：最大缩放级别，minimum-scale：最小缩放级别）*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> @*页面宽度为设别宽度，初始缩放为100%*@
+
+    @*为搜索引擎设定页面关键词*@
+    <meta name="keywords" content="7878">
+
+    @*为搜索引擎设定页面主要内容*@
+    <meta name="description" content="这是一个测试页面。">
+
+    @*告诉搜索引擎机器人抓取哪些页面。(all:文件被检索，页面链接可被查询|none:文件不被检索，页面链接不可被查询|index:文件将被检索|follow:页面链接可被查询|noindex:文件不被检索，页面链接可被查询|nofollow:文件被检索，页面链接不可被查询)*@
+    <meta name="robots" content="none">
+
+   
+
+    @*网站字符编码*@
+    <meta charset="utf-8" />
+
+    @*页面标题，根据body页面动态显示*@
+    <title>@ViewBag.Title - 我的Razor页面</title>
+
+    <!-- <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" /> -->
+
+    <!-- @*引用BundleConfig的样式及脚本包路径*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr") -->
+
+    @*定义节点：呈现内容页的对应节点（只在布局页中，required:内容页是否必需存在该节点）*@
+    @RenderSection("myhead", required: false)
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li>@Html.ActionLink("关于", "About", "Home")</li>
+                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>布局页引入分布视图</h2>
+        <hr />
+        Partial:
+        @*定义分部视图：呈现该名称的视图页*@
+        @Html.Partial("MyPartial")
+        @{Html.RenderPartial("MyPartial");}
+        <hr />
+        Action:
+        @*定义分部Action：调用该名称的Action*@
+        @Html.Action("GetMyPartial")
+        @{Html.RenderAction("GetMyPartial");}
+        <hr />
+        RenderPage:
+        @*定义分部视图：呈现该路径的视图页（PageData传参）*@
+        @RenderPage("~/Views/Test/MyPartial.cshtml")
+        @RenderPage("~/Views/Test/MyPartial.cshtml", new { Name = "RenderPage-孩子气", Age = 21})
+    </div>
+    <div class="container body-content">
+        @*定义主体：呈现内容页的主体（只在布局页中，必须且只能出现一次）*@
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 我的Razor页面</p>
+        </footer>
+    </div>
+</body>
+</html>

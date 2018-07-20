@@ -1,0 +1,3 @@
+cd ./CSharp
+dotnet new webapi
+dotnet run
