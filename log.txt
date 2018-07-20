@@ -1,3 +1,11 @@
 cd ./CSharp
 dotnet new webapi
 dotnet run
+
+==============
+echo "# WebApi-DotNet" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:halyhuang1991/WebApi-DotNet.git
+git push -u origin master
