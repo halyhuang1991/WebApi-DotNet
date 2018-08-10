@@ -31,11 +31,12 @@ namespace CSharp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
             services.AddCors(options =>
             options.AddPolicy("AllowSameDomain",
         builder => builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials())
             );
+            services.AddOptions();
+            services.Configure<SettingOptions>(Configuration.GetSection("ConnectionStrings"));
             var hostname = "XPHP0004\\HALY";
             var password = "admin";
             var connString = $"Data Source={hostname};Initial Catalog=test;User ID=admin;Password={password};";
