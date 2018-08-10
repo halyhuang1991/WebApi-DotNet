@@ -27,13 +27,15 @@ namespace CSharp.Controllers
             
             _context.book.Add(model);//book对应数据库表名
             _context.SaveChanges();
-
+            _context.book.Update(new book(){id=12,name="sd",booknum=11});
+            _context.SaveChanges();
             return Ok(model);
         }
         //GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
-        {
+        { 
+            List<book> ls=_context.book.Where(x=>x.id>1).ToList();
             return new string[] { "value1", "value2" };
         }
 
