@@ -35,6 +35,7 @@ namespace CSharp.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         { 
+            //http://localhost:5000/api/Values?id=1&type=4
             List<book> ls=_context.book.Where(x=>x.id>1).ToList();
             return new string[] { "value1", "value2" };
         }

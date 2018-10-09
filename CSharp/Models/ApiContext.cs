@@ -7,7 +7,8 @@ namespace CSharp.Models
         public ApiContext(DbContextOptions<ApiContext> options)
             : base(options)
         {
-            this.Database.EnsureCreated();
+            //this.Database.EnsureCreated();
+            this.Database.OpenConnectionAsync();
         }
 
         public DbSet<product> Products { get; set; }

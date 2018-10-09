@@ -30,7 +30,10 @@ namespace CSharp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ActionFilter>();
+            });
             services.AddCors(options =>
             options.AddPolicy("AllowSameDomain",
         builder => builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials())

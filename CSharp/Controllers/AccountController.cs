@@ -21,11 +21,15 @@ namespace CSharp.Controllers
         [HttpGet]
         public async Task<IActionResult> Login(string userName, string password, string ReturnUrl)
         {
+            //http://localhost:5000/api/Account?usrname=halyhuang
+            string testuser=HttpContext.Request.Query["usename"].ToString();
             string usr=HttpContext.Request.Cookies["userName"];
             if(usr!=null){
                 if(userName==""||userName==null){
                     userName=usr.ToString();
                 }
+            }else{
+                usr=testuser;
             }
             string pass=HttpContext.Request.Cookies["password"];
             if(pass!=null){
