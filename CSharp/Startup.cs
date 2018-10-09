@@ -34,7 +34,7 @@ namespace CSharp
             services.AddCors(options =>
             options.AddPolicy("AllowSameDomain",
         builder => builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials())
-            );
+            );//设定所有跨域
             services.AddOptions();
             services.Configure<SettingOptions>(Configuration.GetSection("ConnectionStrings"));
             var hostname = "XPHP0004\\HALY";
@@ -48,7 +48,7 @@ namespace CSharp
             {
                 o.LoginPath = new PathString("/api/Account");
                 o.AccessDeniedPath = new PathString("/Error/Forbidden");
-            });
+            });//用户认证
             
         }
 
