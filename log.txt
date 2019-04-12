@@ -9,3 +9,8 @@ git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:halyhuang1991/WebApi-DotNet.git
 git push -u origin master
+=======consul
+consul agent -dev   开发模式
+http://127.0.0.1:8500/ui/
+consul agent -dev -client 192.168.11.143
+http://192.168.11.143:8500/ui
