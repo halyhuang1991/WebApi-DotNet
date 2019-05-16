@@ -12,6 +12,7 @@ namespace CSharp.Controllers
     [EnableCors("AllowSameDomain")]
     public class ValuesController : Controller
     {
+        public static List<book> lss=new List<book>();
         private readonly ApiContext _context;
 
         public ValuesController(ApiContext context)
@@ -37,9 +38,14 @@ namespace CSharp.Controllers
         { 
             //http://localhost:5000/api/Values?id=1&type=4
             List<book> ls=_context.book.Where(x=>x.id>1).ToList();
+            lss.AddRange(ls);
             return new string[] { "value1", "value2" };
         }
-
+        [HttpGet,Route("search")]
+        public List<book> GetLS(int id)
+        {
+            return lss;
+        }
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)

@@ -22,7 +22,7 @@ namespace CSharp.Controllers
         public async Task<IActionResult> Login(string userName, string password, string ReturnUrl)
         {
             //http://localhost:5000/api/Account?usrname=halyhuang
-            string testuser=HttpContext.Request.Query["usename"].ToString();
+            string testuser=HttpContext.Request.Query["usrname"].ToString();
             string usr=HttpContext.Request.Cookies["userName"];
             if(usr!=null){
                 if(userName==""||userName==null){

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Consul;
+using CSharp.Filter;
 using CSharp.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace CSharp
             services.AddMvc(options =>
             {
                 options.Filters.Add<ActionFilter>();
+                options.Filters.Add<ErrFilter>();
             });
             services.AddCors(options =>
             options.AddPolicy("AllowSameDomain",
@@ -43,7 +45,7 @@ namespace CSharp
             services.Configure<SettingOptions>(Configuration.GetSection("ConnectionStrings"));
             var hostname = "XPHP0004\\HALY";
             var password = "admin";
-            var connString = $"Data Source={hostname};Initial Catalog=test;User ID=admin;Password={password};";
+            var connString = $"Data Source={hostname};Initial Catalog=test;User ID=haly;Password={password};";
             
             services.AddDbContext<ApiContext>(options => options.UseSqlServer(connString));
             //------------------------------------------

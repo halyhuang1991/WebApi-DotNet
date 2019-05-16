@@ -4,6 +4,6 @@ namespace CSharp.Models
     {
         public int id{get;set;}
         public string name{get;set;}
-        public int booknum{get;set;}
+        public int? booknum{get;set;}
     }
 }
